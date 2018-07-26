@@ -9,6 +9,9 @@
     margin: 10px;
     font-weight: bold;
 }
+.Button:hover{
+    color:black;
+}
 
 .Button:first-of-type {
     margin-left: 0;

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Burger from '../Burger/Burger';
 import classes from './Order.css';
 
 const order = ( props ) => {
@@ -27,9 +28,16 @@ const order = ( props ) => {
     });
 
     return (
+        <div>
         <div className={classes.Order}>
             <p>Ingredients: {ingredientOutput}</p>
             <p>Price: <strong>USD {Number.parseFloat( props.price ).toFixed( 2 )}</strong></p>
+            <p>Order Date: {props.orderDate.split('T')[0] + ' '} 
+              </p>
+
+            </div>
+
+  
         </div>
     );
 };

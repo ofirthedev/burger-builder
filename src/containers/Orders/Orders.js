@@ -19,12 +19,27 @@ class Orders extends Component {
                 <Order
                     key={order.id}
                     ingredients={order.ingredients}
-                    price={order.price} />
+                    price={order.price}
+                    orderDate={order.orderDate} />
             ) )
         }
         return (
             <div>
+            <div style={{textAlign:'center',width:'100%',color:'#703B09'}}><h1>My Orders</h1></div>
+
                 {orders}
+
+                <div>
+                <div style={{textAlign:'center',width:'100%',color:'#703B09'}}>
+                <h1>User Information</h1></div>
+                <div style={{textAlign:'center',width:'100%',color:'#703B09'}}>
+                <strong>User ID</strong> : {this.props.userId}
+                <div style={{paddingTop:'20px'}}><strong>Number Of Orders</strong> : {this.props.orders.length}</div>
+
+                </div>
+                
+
+                </div>
             </div>
         );
     }

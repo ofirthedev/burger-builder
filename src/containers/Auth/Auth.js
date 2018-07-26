@@ -10,6 +10,10 @@ import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 class Auth extends Component {
+    
+    componentDidMount(){
+        let errorMessage = null;
+    }
     state = {
         controls: {
             email: {
@@ -41,7 +45,7 @@ class Auth extends Component {
                 touched: false
             }
         },
-        isSignup: true
+        isSignup: true,
     }
 
     componentDidMount () {
@@ -98,10 +102,10 @@ class Auth extends Component {
         }
 
         let errorMessage = null;
-
         if ( this.props.error ) {
+            let errorM = this.props.error.message.replace('_', ' ');
             errorMessage = (
-                <p>{this.props.error.message}</p>
+                <p style={{color:'grey',fontWeight:'bold'}}>{errorM} , PLEASE TRY AGAIN!</p>
             );
         }
 
@@ -112,6 +116,7 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth}>
+            <h1>{this.state.isSignup ? 'Register' : 'Log In'}</h1>
                 {authRedirect}
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>
@@ -120,7 +125,7 @@ class Auth extends Component {
                 </form>
                 <Button
                     clicked={this.switchAuthModeHandler}
-                    btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGNIN' : 'SIGNUP'}</Button>
+                    btnType="Danger">SWITCH TO {this.state.isSignup ? 'LOG IN' : 'REGISTER'}</Button>
             </div>
         );
     }

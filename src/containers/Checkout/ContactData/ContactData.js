@@ -10,7 +10,14 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 import * as actions from '../../../store/actions/index';
 import { updateObject, checkValidity } from '../../../shared/utility';
 
+
 class ContactData extends Component {
+ 
+    componentDidMount () {
+            document.querySelector(".formData").scrollIntoView({
+                behavior: "smooth"
+            });
+      }
     state = {
         orderForm: {
             name: {
@@ -109,7 +116,8 @@ class ContactData extends Component {
             ingredients: this.props.ings,
             price: this.props.price,
             orderData: formData,
-            userId: this.props.userId
+            userId: this.props.userId,
+            orderDate: new Date()
         }
 
         this.props.onOrderBurger(order, this.props.token);
@@ -133,7 +141,7 @@ class ContactData extends Component {
         }
         this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
     }
-
+ 
     render () {
         const formElementsArray = [];
         for (let key in this.state.orderForm) {
@@ -162,10 +170,13 @@ class ContactData extends Component {
             form = <Spinner />;
         }
         return (
-            <div className={classes.ContactData}>
+            <div
+                  className={classes.ContactData}>
                 <h4>Enter your Contact Data</h4>
+                <div className="formData" ref={elem => (this.formData = elem)}></div>
                 {form}
             </div>
+          
         );
     }
 }
